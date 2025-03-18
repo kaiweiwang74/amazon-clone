@@ -19,11 +19,12 @@
       }
     ],
     "baseUrl": "./",
-    "paths": {
-      "@/*": ["src/*"],
-      "@/app/*": ["src/app/*"],
-      "@/components/*": ["src/app/components/*"]
-    }
+      "paths": {
+        "@/*": ["src/*"],
+        "@/app/*": ["src/app/*"],
+        "@/hooks/*": ["src/app/hooks/*"],
+        "@/components/*": ["src/components/*"] 
+      }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]

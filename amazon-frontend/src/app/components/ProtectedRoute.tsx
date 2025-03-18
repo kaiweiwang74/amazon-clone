@@ -1,7 +1,7 @@
 "use client"; // ✅ 確保這是 Client Component
 
 import { useRouter } from "next/navigation"; // ✅ 修正 import
-import useAuth from "@/app/hooks/useAuth";
+import useAuth from '@/hooks/useAuth';
 import { ReactNode, useEffect } from "react";
 
 interface ProtectedRouteProps {

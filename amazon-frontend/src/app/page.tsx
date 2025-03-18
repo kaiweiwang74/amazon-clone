@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import ProductCard from "@/components/ProductCard";
+import ProductCard from "./components/ProductCard";
+
 
 // 定義 Product 介面
 interface Product {

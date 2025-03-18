@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import useAuth from "@/app/hooks/useAuth";
+import useAuth from '@/hooks/useAuth';
 
 const Navbar = () => {
   const { user, loading } = useAuth();
