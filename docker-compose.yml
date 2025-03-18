@@ -1,0 +1,42 @@
+services:
+  amazon-backend:
+    build: ./amazon-backend
+    container_name: amazon-backend
+    restart: always
+    depends_on:
+      amazon-db:
+        condition: service_healthy # ✅ 確保後端等資料庫完全啟動
+    environment:
+      DB_USER: admin
+      DB_HOST: amazon-db
+      DB_NAME: amazon_clone
+      DB_PASSWORD: password
+      DB_PORT: 5432
+      JWT_SECRET: mySuperSecretKey 
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./amazon-backend:/app
+      - /app/node_modules
+    command: ["npm", "run", "start"]
+
+  amazon-db:
+    image: postgres:latest
+    container_name: amazon-db
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: amazon_clone
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck: # ✅ 加入這一段，確保 PostgreSQL 準備好
+      test: ["CMD", "pg_isready", "-U", "admin"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+
+volumes:
+  pgdata:
