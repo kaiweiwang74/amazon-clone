@@ -22,18 +22,23 @@ export default function RegisterPage() {
 
   const onSubmit = async (data: { name: string; email: string; password: string }) => {
     try {
-      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/users/register`, data);
+      await axios.post(
+        process.env.NEXT_PUBLIC_API_URL
+          ? `${process.env.NEXT_PUBLIC_API_URL}/api/users/register`
+          : "/api/users/register",
+        data
+      );
       router.push("/login");
-    } catch (err) {
+    } catch {
       setError("註冊失敗，請確認 Email 是否已被使用");
     }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-96">
-        <h2 className="text-2xl font-bold mb-6">註冊</h2>
-        {error && <p className="text-red-500">{error}</p>}
+        <h2 className="text-2xl font-bold mb-6 text-center">註冊</h2>
+        {error && <p className="text-red-500 text-center">{error}</p>}
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
             <label className="block text-gray-700">姓名</label>
@@ -62,7 +67,9 @@ export default function RegisterPage() {
             />
             {errors.password && <p className="text-red-500">{errors.password.message}</p>}
           </div>
-          <button className="w-full bg-blue-500 text-white p-2 rounded">註冊</button>
+          <button className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition">
+            註冊
+          </button>
         </form>
         <p className="mt-4 text-center">
           已有帳號？ <a href="/login" className="text-blue-500">登入</a>

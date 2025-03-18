@@ -3,6 +3,7 @@
 import useAuth from "@/app/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Image from "next/image"; // ✅ Import Next.js Image Component
 
 interface CartItem {
   id: number;
@@ -29,7 +30,7 @@ export default function CartPage() {
 
     const token = localStorage.getItem("token");
 
-    fetch("http://localhost:4000/api/cart", {
+    fetch(`https://amazon-clone-byub.onrender.com/api/cart`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
@@ -90,7 +91,15 @@ export default function CartPage() {
                 className="cart-item flex items-center justify-between border p-4 rounded"
               >
                 <div className="flex items-center space-x-4">
-                  <img src={item.image_url} alt={item.name} className="w-16 h-16 rounded" />
+                  {/* ✅ Replaced <img> with Next.js <Image> */}
+                  <Image
+                    src={item.image_url}
+                    alt={item.name}
+                    width={64} // 64px
+                    height={64} // 64px
+                    className="rounded"
+                    priority // Optimize for fast loading
+                  />
                   <div>
                     <p className="font-bold">{item.name}</p>
                     <p>${Number(item.price).toFixed(2)}</p>

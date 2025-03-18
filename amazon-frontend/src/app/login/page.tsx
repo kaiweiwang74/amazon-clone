@@ -24,13 +24,13 @@ export default function LoginPage() {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/users/login`, data);
       localStorage.setItem("token", res.data.token);
       router.push("/");
-    } catch (err) {
+    } catch {
       setError("Login failed, please check your email or password.");
     }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-96">
         <h2 className="text-2xl font-bold mb-6">Sign in</h2>
         {error && <p className="text-red-500">{error}</p>}
@@ -60,10 +60,11 @@ export default function LoginPage() {
         </p>
       </div>
 
-      <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-2xl font-bold mb-4">Login</h1>
+      {/* Google Sign-in */}
+      <div className="mt-6">
+        <h1 className="text-xl font-bold mb-4">Or Sign in with</h1>
         <a
-          href={`${process.env.NEXT_PUBLIC_API_URL}/api/auth/google`}
+          href={process.env.NEXT_PUBLIC_API_URL ? `${process.env.NEXT_PUBLIC_API_URL}/api/auth/google` : "/api/auth/google"}
           className="px-4 py-2 bg-red-500 text-white rounded-md"
         >
           Sign in with Google
