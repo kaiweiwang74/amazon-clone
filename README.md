@@ -1,11 +1,13 @@
 Full-stack E-commerce Platform
 Tech Stack: Next.js (React) | Node.js (Express.js/Nest.js) | PostgreSQL | Stripe | TypeScript
 
-📌Project Overview
+📌 Project Overview
 
 This is a full-stack e-commerce platform designed for seamless online shopping. It includes essential e-commerce functionalities such as a shopping cart, user authentication, product management, and order checkout. 
 The project follows best practices and supports JWT/OAuth login and Stripe payments.
 
+🌐 Live Demo  
+[Live Deployment](https://amazon-clone-brown-chi.vercel.app/)
 
 ✨ Features
 
@@ -34,9 +36,11 @@ The project follows best practices and supports JWT/OAuth login and Stripe payme
 
 
 
-🚀Future Improvements
+🚀 Future Improvements
 ．Product Search 
 
 ．Admin Dashboard (Add/Edit Products)
 
 ．Responsive Design for Desktop & Mobile
+
+
