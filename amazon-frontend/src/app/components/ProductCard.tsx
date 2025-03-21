@@ -1,13 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image"; // ✅ Import Next.js Image Component
+import Image from "next/image";
 
 interface Product {
   id: number;
   name: string;
-  price: number;
+  price: number | string; // 允許價格為數字或字串
   image_url: string;
+  discount?: number;
+  rating?: number;
+  reviews?: number;
+  description?: string;
 }
 
 export default function ProductCard({ product }: { product: Product }) {
@@ -35,26 +39,52 @@ export default function ProductCard({ product }: { product: Product }) {
     setAdding(false);
   };
 
+  // ✅ 確保價格是數字
+  const price = typeof product.price === "number" ? product.price : parseFloat(product.price);
+
   return (
-    <div className="border p-4 rounded-lg shadow-lg">
-      {/* ✅ Replaced <img> with Next.js <Image> */}
+    <div className="bg-white rounded-lg shadow-md p-4 relative">
+      {product.discount && (
+        <span className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">
+          -{product.discount}%
+        </span>
+      )}
       <Image
         src={product.image_url}
         alt={product.name}
-        width={200} // Set width (adjust as needed)
-        height={160} // Set height (adjust as needed)
-        className="object-cover rounded"
-        priority // Optimize for fast loading
+        width={300}
+        height={200}
+        className="object-cover rounded w-full"
+        priority
       />
-      <h2 className="font-bold text-lg">{product.name}</h2>
-      <p className="text-gray-600">${Number(product.price).toFixed(2)}</p>
-      <button
-        onClick={handleAddToCart}
-        className="bg-blue-500 text-white px-4 py-2 mt-2 rounded"
-        disabled={adding}
-      >
-        {adding ? "Adding..." : "🛒 Add to Cart"}
-      </button>
+      <h2 className="font-bold text-xl mt-2">{product.name}</h2>
+      <div className="flex items-center space-x-2">
+        {product.rating && <span className="text-yellow-500">⭐ {product.rating}</span>}
+        {product.reviews && <span className="text-gray-500 text-sm">({product.reviews} reviews)</span>}
+      </div>
+      <p className="text-gray-600 mt-1">
+        {product.discount ? (
+          <>
+            <span className="text-red-500 text-lg font-bold">
+              ${(price * (1 - product.discount / 100)).toFixed(2)}
+            </span>
+            <span className="text-gray-400 line-through ml-2">${price.toFixed(2)}</span>
+          </>
+        ) : (
+          <span className="text-lg font-bold">${price.toFixed(2)}</span>
+        )}
+      </p>
+      <p className="text-gray-500 text-sm mt-1">{product.description}</p>
+      <div className="flex justify-between items-center mt-3">
+        <button
+          onClick={handleAddToCart}
+          className="bg-black text-white px-4 py-2 rounded w-full"
+          disabled={adding}
+        >
+          {adding ? "Adding..." : "🛒 Add to Cart"}
+        </button>
+        <button className="p-2 hover:bg-gray-200 rounded-full ml-2">♡</button>
+      </div>
     </div>
   );
 }

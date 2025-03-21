@@ -14,7 +14,7 @@ const Navbar = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
-    window.location.href = "/login"; // 重新導向登入頁面
+    window.location.href = "/login"; // Redirect to login page
   };
 
   return (
@@ -30,7 +30,6 @@ const Navbar = () => {
           <Link href="/profile" className="hover:text-gray-300">
             Profile
           </Link>
-
           {!loading &&
             (isLoggedIn ? (
               <button onClick={handleLogout} className="hover:text-gray-300">
