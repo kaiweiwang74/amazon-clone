@@ -2,6 +2,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import useAuth from '@/hooks/useAuth';
+import { ShoppingCartIcon, UserIcon } from "@heroicons/react/16/solid";
+
 
 const Navbar = () => {
   const { user, loading } = useAuth();
@@ -18,27 +20,33 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gray-800 p-4 text-white">
+    <nav className="bg-white p-4 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
-        <Link href="/">
-          <span className="text-xl font-bold">My Store</span>
+        {/* Logo */}
+        <Link href="/" className="text-xl font-bold text-blue-600">
+          My E-Commerce
         </Link>
-        <div className="space-x-4">
-          <Link href="/cart" className="hover:text-gray-300">
-            Cart
+        
+        {/* Search Bar */}
+        <input
+          type="text"
+          placeholder="搜尋商品..."
+          className="border p-2 rounded w-1/3"
+        />
+        
+        {/* Icons */}
+        <div className="flex items-center gap-6 text-gray-700">
+          <Link href="/profile" className="hover:text-gray-500">
+            <UserIcon className="h-6 w-6" />
           </Link>
-          <Link href="/profile" className="hover:text-gray-300">
-            Profile
+          <Link href="/cart" className="hover:text-gray-500">
+            <ShoppingCartIcon className="h-6 w-6" />
           </Link>
           {!loading &&
             (isLoggedIn ? (
-              <button onClick={handleLogout} className="hover:text-gray-300">
-                Logout
-              </button>
+              <button onClick={handleLogout} className="hover:text-gray-500 text-sm">🚪 Logout</button>
             ) : (
-              <Link href="/login" className="hover:text-gray-300">
-                Login
-              </Link>
+              <Link href="/login" className="hover:text-gray-500 text-sm">Login</Link>
             ))}
         </div>
       </div>
