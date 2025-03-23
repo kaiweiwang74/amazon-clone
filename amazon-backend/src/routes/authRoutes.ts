@@ -24,7 +24,7 @@ router.get(
     });
 
     // Redirect to frontend with token
-    res.redirect(`http://localhost:3000/login-success?token=${token}`);
+    res.redirect(`${process.env.FRONTEND_URL}/login-success?token=${token}`);
   }
 );
 
