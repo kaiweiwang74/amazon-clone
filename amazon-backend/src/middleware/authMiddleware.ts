@@ -10,7 +10,7 @@ export interface DecodedToken extends JwtPayload {
 }
 
 export interface AuthRequest extends Request {
-  user?: DecodedToken; // ✅ Make sure user matches DecodedToken type
+  user?: DecodedToken; // Make sure user matches DecodedToken type
 }
 
 export const verifyToken = (

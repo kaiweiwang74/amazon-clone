@@ -5,8 +5,6 @@ import { AuthRequest } from "../middleware/authMiddleware";
 
 const router = express.Router();
 
-// ✅ 確保 `registerUser` 參數類型正確
-
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 

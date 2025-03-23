@@ -29,7 +29,7 @@ export const createCheckoutSession = async (req: Request, res: Response): Promis
       quantity: item.quantity,
     }));
 
-    // 🧾 Create a payment session
+    // Create a payment session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       line_items: lineItems,

@@ -11,10 +11,10 @@ import {
 
 const router = express.Router();
 
-router.post("/", verifyToken, placeOrder); // ✅ Place an order
-router.get("/", verifyToken, getOrders); // ✅ Get user orders
-router.get("/all", verifyToken, verifyAdmin, getAllOrdersForAdmin); // ✅ Admin: Get all orders
-router.put("/status", verifyToken, verifyAdmin, changeOrderStatus); // ✅ Admin: Update order status
-router.put("/cancel", verifyToken, cancelUserOrder); // ✅ User: Cancel an order
+router.post("/", verifyToken, placeOrder); 
+router.get("/", verifyToken, getOrders); 
+router.get("/all", verifyToken, verifyAdmin, getAllOrdersForAdmin); 
+router.put("/status", verifyToken, verifyAdmin, changeOrderStatus); 
+router.put("/cancel", verifyToken, cancelUserOrder); 
 
 export default router;

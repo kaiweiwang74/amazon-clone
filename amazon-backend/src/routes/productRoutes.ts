@@ -14,7 +14,7 @@ const router = express.Router();
 router.get("/", getProducts);
 router.get("/:id", getProductById);
 
-// ✅ Ensure admin access for product modifications
+
 router.post("/", verifyToken, verifyAdmin, createProduct);
 router.put("/:id", verifyToken, verifyAdmin, updateProduct);
 router.delete("/:id", verifyToken, verifyAdmin, deleteProduct);

@@ -15,15 +15,15 @@ router.get(
       res.status(401).json({ error: "Authentication failed" });
     }
 
-    // 🟢 Ensure user data is available
+    // Ensure user data is available
     const user = req.user as { id: number; email: string; name: string };
 
-    // 🟢 Generate JWT Token
+    // Generate JWT Token
     const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET!, {
       expiresIn: "1h",
     });
 
-    // ✅ Redirect to frontend with token
+    // Redirect to frontend with token
     res.redirect(`http://localhost:3000/login-success?token=${token}`);
   }
 );

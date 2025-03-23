@@ -9,15 +9,15 @@ export const getProducts = async (req: Request, res: Response) => {
         console.log("🔍 Executing SQL Query:", query);
 
         const result = await pool.query(query);
-        console.log("✅ Query Result:", result.rows);
+        console.log("Query Result:", result.rows);
 
         res.json(result.rows);
     } catch (error: unknown) { // Fix unknown type
         if (error instanceof Error) {
-            console.error("❌ SQL Error:", error.message);
+            console.error("SQL Error:", error.message);
             res.status(500).json({ error: error.message });
         } else {
-            console.error("❌ Unknown Error:", error);
+            console.error("Unknown Error:", error);
             res.status(500).json({ error: "An unexpected error occurred" });
         }
     }

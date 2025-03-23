@@ -2,14 +2,14 @@ import pool from "../config/db";
 
 const addToCart = async (userId: number, productId: number, quantity: number = 1) => {
     try {
-        console.log("🟡 執行 SQL，userId:", userId, "productId:", productId, "quantity:", quantity);
+        console.log("Execute SQL，userId:", userId, "productId:", productId, "quantity:", quantity);
         const { rows } = await pool.query(
             "INSERT INTO cart_items (user_id, product_id, quantity) VALUES ($1, $2, $3) RETURNING *",
             [userId, productId, quantity]
         );
         return rows[0];
     } catch (error) {
-        console.error("❌ SQL 錯誤:", error);
+        console.error("SQL error:", error);
         throw error;
     }
 };
