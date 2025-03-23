@@ -1,4 +1,4 @@
-import app from "./app";  // ✅ 確保正確匯入 `app.ts`
+import app from "./app";
 
 const PORT = process.env.PORT || 4000;
 

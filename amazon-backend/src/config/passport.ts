@@ -14,17 +14,17 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-        // 🟢 Check if user already exists
+        // Check if user already exists
         const userCheck = await pool.query("SELECT * FROM users WHERE email = $1", [
           profile.emails?.[0].value,
         ]);
 
         if (userCheck.rows.length > 0) {
-          // ✅ If user exists, return existing user
+          // If user exists, return existing user
           return done(null, userCheck.rows[0]);
         }
 
-        // 🟢 Create new user if not exists
+        // Create new user if not exists
         const newUser = await pool.query(
           "INSERT INTO users (name, email, google_id) VALUES ($1, $2, $3) RETURNING *",
           [profile.displayName, profile.emails?.[0].value, profile.id]

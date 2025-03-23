@@ -45,8 +45,8 @@ app.use("/api/auth", authRoutes); // Changed from "/api/auth" to "/auth" to matc
 
 // Error handler
 const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
-  console.error("🔥 伺服器錯誤：", err);
-  res.status(500).json({ error: "伺服器內部錯誤", message: err.message });
+  console.error("Server Error：", err);
+  res.status(500).json({ error: "Server Error", message: err.message });
 };
 
 app.use(errorHandler);

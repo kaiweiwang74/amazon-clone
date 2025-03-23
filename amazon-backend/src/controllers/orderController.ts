@@ -5,15 +5,15 @@ export const placeOrder = async (req: Request, res: Response): Promise<void> => 
     const userId = (req as any).user.id;
     const { totalPrice, items } = req.body;
 
-    console.log("🔍 Order Request:", { userId, totalPrice, items });
+    console.log("Order Request:", { userId, totalPrice, items });
 
     if (typeof totalPrice !== "number" || totalPrice <= 0) {
-        console.error("❌ Invalid totalPrice:", totalPrice);
+        console.error("Invalid totalPrice:", totalPrice);
         res.status(400).json({ error: "Invalid total price" });
     }
 
     if (!items || items.length === 0) {
-        console.error("❌ No items in the order:", items);
+        console.error("No items in the order:", items);
         res.status(400).json({ error: "Order must have at least one item" });
     }
 
@@ -21,7 +21,7 @@ export const placeOrder = async (req: Request, res: Response): Promise<void> => 
         const order = await createOrder(userId, totalPrice, items);
         res.status(201).json(order);
     } catch (error) {
-        console.error("❌ Order Creation Failed:", error);
+        console.error("Order Creation Failed:", error);
         res.status(500).json({ error: "Failed to create order" });
     }
 };
@@ -31,14 +31,14 @@ export const getOrders = async (req: Request, res: Response) => {
     const userId = (req as any).user.id;
 
     try {
-        console.log("📥 Fetching orders for user:", userId); // ✅ Log user ID
+        console.log("Fetching orders for user:", userId); // Log user ID
 
         const orders = await getUserOrders(userId);
-        console.log("✅ Orders retrieved:", orders); // ✅ Log retrieved orders
+        console.log("Orders retrieved:", orders); // Log retrieved orders
 
         res.json(orders);
     } catch (error) {
-        console.error("❌ Failed to retrieve orders:", error);
+        console.error("Failed to retrieve orders:", error);
         res.status(500).json({ error: "Failed to retrieve orders", details: error });
     }
 };

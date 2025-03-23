@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
-    "target": "ES6",                                  /* 設定 JavaScript 的語言版本 */
-    "module": "CommonJS",                             /* 指定為 CommonJS 以與 Node.js 相容 */
-    "outDir": "./dist",                               /* 輸出編譯後的 JavaScript 文件到 dist 目錄 */
-    "rootDir": "./src",                               /* 指定 TypeScript 原始碼所在的資料夾 */
-    "strict": true,                                   /* 啟用所有嚴格的型別檢查 */
-    "esModuleInterop": true,                          /* 讓 TypeScript 與 CommonJS 模組兼容 */
-    "forceConsistentCasingInFileNames": true,         /* 確保檔案名稱大小寫一致 */
-    "skipLibCheck": true                              /* 跳過 node_modules 的型別檢查 */
+    "target": "ES6",                                  
+    "module": "CommonJS",                             
+    "outDir": "./dist",                               
+    "rootDir": "./src",                               
+    "strict": true,                                   
+    "esModuleInterop": true,                          
+    "forceConsistentCasingInFileNames": true,         
+    "skipLibCheck": true                              
   },
-  "include": ["src"],                                 /* 只編譯 src 目錄下的檔案 */
-  "exclude": ["node_modules", "dist"]                /* 排除 node_modules 和 dist 目錄 */
+  "include": ["src"],                                 
+  "exclude": ["node_modules", "dist"]                
 }
