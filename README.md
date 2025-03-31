@@ -24,7 +24,7 @@ To maintain **cleaner architecture** and **reduce nesting complexity**, the fron
 ### 🛠 Tech Details  
 - **Frontend**: Next.js + Tailwind CSS / Material-UI  
 - **Backend**: Node.js (Express/Nest.js)  
-- **Database**: PostgreSQL (using Prisma ORM)  
+- **Database**: PostgreSQL 
 - **Authentication**: JWT & Google OAuth  
 - **Payment Integration**: Stripe API  
 - **Deployment**: Vercel (Frontend), Render (Backend)  
